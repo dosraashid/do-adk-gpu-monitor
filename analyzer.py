@@ -83,9 +83,15 @@ def analyze_gpu_droplets():
     # =========================================================================
     # SLUG FILTER: GPU ONLY
     # =========================================================================
+   
     # This ensures we only analyze droplets with "gpu" in their size slug.
-    # To monitor all droplets, change this to: target_droplets = all_droplets
     target_droplets = [d for d in all_droplets if "gpu" in d.get("size_slug", "").lower()]
+
+    # If you want to filter for another specific slug (e.g., 's-' for standard 
+    # or 'c-' for CPU-optimized), update "gpu" accordingly in the line above.
+    
+    # To monitor all Droplets, change this to:
+    # target_droplets = all_droplets
     # =========================================================================
 
     if not target_droplets:
