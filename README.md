@@ -1,4 +1,4 @@
-🤖 DigitalOcean Gradient™ AI GPU Monitor and Analysis Agent
+# 🤖 DigitalOcean Gradient™ AI GPU Monitor and Analysis Agent
 
 This repository demonstrates a production-ready Infrastructure Monitoring Agent built on the DigitalOcean Gradient™ AI Platform. The agent uses LangGraph for stateful reasoning, fetches real-time NVIDIA DCGM metrics from your GPU fleet, and identifies cost-saving opportunities by flagging idle or under-utilized resources.
 
@@ -24,6 +24,7 @@ A modular architecture designed for the DigitalOcean Gradient™ AI Platform, fe
     └── agent.yml         # 🚀 Deployment Metadata & Routing Config
 ├── .env                  # 🔑 Local API keys (Never committed to Git)
 ├── .gitignore            # 🛡️ Security: Prevents sensitive keys from leaking
+├── README.md             # 📝 Detailed Project Documentation
 ├── main.py               # 🧠 The Orchestrator (LangGraph & Entrypoint)
 ├── analyzer.py           # 📊 The Engine (Metric processing & threshold logic)
 ├── metrics.py            # 📡 The Scraper (DO API & DCGM Prometheus parser)
@@ -45,23 +46,25 @@ A modular architecture designed for the DigitalOcean Gradient™ AI Platform, fe
 ### 🛡️ `.gitignore`
 **The Shield.** A vital security configuration that ensures your private secrets stay private. It tells Git to ignore the `.env` file and temporary Python artifacts, preventing accidental leaks of your API keys to public repositories.
 
+### 📝 `README.md`
+**The Blueprint.** The central documentation for the project. It explains the "why" and "how" of the architecture, providing the necessary commands for others to clone, initialize, and deploy the agent.
+
 ### 🧠 `main.py`
 **The Orchestrator.** The central nervous system of the agent. It defines the LangGraph state machine, binds the `analyze_gpu_fleet` tool, and manages the conversation flow. It ensures the agent "thinks" before it acts and remembers the context of your conversation using `thread_id`.
 
 ### 📊 `analyzer.py`
 **The Engine.** Handles the heavy lifting. It filters your fleet for specific slugs (e.g., "gpu") and uses a `ThreadPoolExecutor` to scan multiple nodes in parallel. It categorizes each node as 🔴 Idle, 🟡 Over-provisioned, or 🟢 Optimized.
 
-### 🛡️ `.gitignore`
-**The Shield.** A vital security configuration that ensures your private secrets stay private. It tells Git to ignore the `.env` file and temporary Python artifacts, preventing accidental leaks of your API keys to public repositories.
+### 📡 `metrics.py`
+**The Scraper.** Contains the low-level logic to communicate with the DigitalOcean V2 API. It also includes a custom Prometheus-style parser to scrape NVIDIA DCGM metrics directly from the GPU nodes on port `9400`.
 
-### 📝 `README.md`
-**The Blueprint.** The central documentation for the project. It explains the "why" and "how" of the architecture, providing the necessary commands for others to clone, initialize, and deploy the agent.
+### ⚙️ `config.py`
+**The Settings.** The "Source of Truth" for your agent. Here you define the System Prompt (how the AI speaks) and the Thresholds (what percentage of usage counts as "Idle" vs. "Optimized").
 
-### 🧠 `main.py`
-**The Orchestrator.** This is the core engine of your application, combining three critical AI patterns into a single file to create a functional autonomous agent:
-* **The Brain:** It acts as the decision-maker, analyzing user intent to determine when to pull live data or perform local calculations.
-* **The Hands:** Implements a robust **MCP (Model Context Protocol) Client**. It handles the complex two-step JSON-RPC "handshake" (Initialize + Call) across 9 distinct DigitalOcean service endpoints using your verified `tool_map` for 100% accuracy.
-* **The Memory:** Utilizes LangGraph's **`MemorySaver`** checkpointer. This enables "Session-Aware" intelligence, where the agent stores the entire state of the conversation (including previous tool outputs) under a unique `thread_id` for seamless follow-up questions.
+### 🧪 test_local.py
+**The Sandbox.** A simplified script to verify your AI can trigger the tools correctly in your local terminal before you commit to a full cloud deployment.
 
 ### 📦 `requirements.txt`
 **The Ecosystem.** This file manifest ensures the cloud environment is identical to your local setup. It lists the essential libraries,ensuring they are pre-installed in the agent's secure container.
+
+
