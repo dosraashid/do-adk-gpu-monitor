@@ -1,0 +1,18 @@
+# --- Core DigitalOcean ADK ---
+# Provides the @entrypoint decorator, CLI for deployment, and tracing tools.
+gradient-adk>=0.2.11
+
+# --- AI & LLM Frameworks ---
+# Required for connecting to DigitalOcean's serverless inference (OpenAI-compatible).
+langchain-openai
+
+# Essential schemas and base classes for LangChain components.
+langchain-core
+
+# --- Agentic Logic & Memory ---
+# Enables the StateGraph and Checkpointer (MemorySaver) for conversation history.
+langgraph
+
+# --- Environment Management ---
+# Loads DIGITALOCEAN_API_TOKEN and GRADIENT_MODEL_ACCESS_KEY from your local .env file.
+python-dotenv
