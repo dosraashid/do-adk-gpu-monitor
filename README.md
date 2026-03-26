@@ -95,7 +95,7 @@ Install the required Python dependencies:
 ```bash
 git clone https://github.com/dosraashid/do-adk-gpu-monitor       
 cd do-adk-gpu-monitor
-python3 -m venv venv
+python3.12 -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
 ```
