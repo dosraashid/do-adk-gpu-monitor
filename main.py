@@ -38,8 +38,9 @@ llm = ChatOpenAI(
 @tool
 def analyze_gpu_fleet():
     """
-    Fetches real-time efficiency metrics for DigitalOcean nodes.
-    Use this only when the user asks for status, health, or costs.
+    Analyzes GPU nodes for efficiency, costs, and connectivity.
+    Use this to check if DCGM is installed, if port 9400 is open, 
+    or to get real-time utilization metrics.
     """
     # This calls the logic in analyzer.py which scans your droplets
     return json.dumps(analyze_gpu_droplets())
